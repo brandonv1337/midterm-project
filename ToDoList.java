@@ -1,18 +1,17 @@
 import java.util.ArrayList;
 
-public class ToDoList 
+public class ToDoList extends ArrayList<Task>
 {
-    private ArrayList<Task> tasks;
 
     public ToDoList()
     {
-        tasks = new ArrayList<Task>();
+        
     }
 
     public String toString()
     {
         String rVal = "";
-        for( Task t : tasks)
+        for( Task t : this)
         {
             rVal += t;
             rVal += "\n";
@@ -20,10 +19,6 @@ public class ToDoList
         return rVal;
     }
 
-    public void addTask(Task newTask) 
-    {
-        tasks.add(newTask);
-    }
 
 
 }

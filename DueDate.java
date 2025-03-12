@@ -34,7 +34,7 @@ public class DueDate {
 
     public int daysTillDue(){
         LocalDate now = LocalDate.now();
-        int daysLeft = (int)ChronoUnit.DAYS.between(now, date); //This returns the days between as a long so it is casted to an integer
+        int daysLeft = (int)ChronoUnit.DAYS.between(now, date); //This returns the days between as a long, so it is casted to an integer
         return daysLeft;
     }
 
@@ -60,6 +60,7 @@ public class DueDate {
     }
 
     public int getPriority(){
+        this.calculatePriority();
         return priority;
     }
 
@@ -100,6 +101,19 @@ public class DueDate {
        hasDate = false;
     } 
 
+    public String toString(){
+        if(!hasDate)
+            return "This task has no due date";
+        else {
+            int daysLeft = this.daysTillDue();
+            if(daysLeft < 0)    //task was due in past
+                return "This task was due " + Math.abs(daysLeft) + " days ago, on " + date; 
+            else if(daysLeft == 0)  //task is due today
+                return "This task is due today, on " + date;
+            else    //task is due in future
+                return "This task is due " + daysLeft + " days from now, on " + date;
+        }
+    }
 
 
 }

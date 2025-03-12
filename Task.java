@@ -3,8 +3,8 @@ public class Task
     private String name;
     private String description;
     private boolean complete;
-    public DueDate dueDate; //public so that the date can be accessed from driver for specific tasks, class has own protections to keep variables safe
-    private int priority; //priority value will be between 0 (high) and 9 (low) or 10 (completed)
+    public DueDate dueDate; //public so that the date can be accessed from driver for specific tasks, class has own protections to keep variables safe: Added by Tim
+    private int priority; //priority value will be between 0 (high) and 9 (low) or 10 (completed): Added by Tim
 
     public Task(String n, String d) //Constructor for tasks without a due date
     {
@@ -46,6 +46,7 @@ public class Task
     }
 
     private void calculatePriority(){ //private because there is no point in calculating from outside of this class without getting it returned
+        //Added by Tim
         //Priority 0 is for tasks due today or earlier
         //Priority 1-7 is for tasks due 1-7 days from now
         //Priority 8 is for 1 to 2 weeks
@@ -70,7 +71,7 @@ public class Task
             priority = 10;
     }
 
-    public int getPriority(){
+    public int getPriority(){ //Added by Tim
         this.calculatePriority();
         return priority;
     }

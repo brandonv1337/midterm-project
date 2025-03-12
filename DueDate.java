@@ -1,69 +1,73 @@
 //CS067 Midterm
-//Class Made by Tim Groth
 
 import java.time.LocalDate; //java.time and its methods are found from https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html
 import java.time.temporal.*;
 
+/**
+ * Class that stores the due date for an object
+ * 
+ * Includes the date, if the object is late, and how many days until the due date
+ * 
+ * @author Tim Groth
+ */
 public class DueDate {
     private LocalDate date;
-    private int priority; //priority value will be between 0 (high) and 9 (low)
     private boolean late;
     private boolean hasDate;
 
-
-    public DueDate(){   //general constructor for tasks that do not have a due date
+    /**
+     * general constructor for tasks that do not have a due date
+     */
+    public DueDate(){   
         hasDate = false;
-        priority = 9;   //Has a low priority because of the lack of due date
         late = false;   //It is not possible to be late without a due date
     }
 
-    public DueDate(int d){  //constructor where 'd' is the days from now where it is due
+    /**
+     * constructor where 'd' is the days from now where it is due
+     * 
+     * @param d the number of days from now where the due date will be set
+     */
+    public DueDate(int d){  
         LocalDate now = LocalDate.now();
         hasDate = true;
         date = now.plusDays(d);
         late = this.getLate();
-        this.calculatePriority();
     }
 
-    public DueDate(int month, int day, int year){  //constructor where the date is given
+    /**
+     * constructor where the date is given
+     * 
+     * @param month the month of the due date
+     * @param day the day of the due date
+     * @param year the year of the due date
+     */
+    public DueDate(int month, int day, int year){ 
         date = LocalDate.of(year, month, day);
         hasDate = true;
         late = this.getLate();
-        this.calculatePriority();
     }
 
+    /**
+     * Calculates the number of days between the current date and the due date
+     * 
+     * @return 1000 if there is no due date, otherwise the number of days until the due date
+     */
     public int daysTillDue(){
-        LocalDate now = LocalDate.now();
-        int daysLeft = (int)ChronoUnit.DAYS.between(now, date); //This returns the days between as a long, so it is casted to an integer
-        return daysLeft;
-    }
-
-    public void calculatePriority(){ 
-        //Priority 0 is for tasks due today or earlier
-        //Priority 1-7 is for tasks due 1-7 days from now
-        //Priority 8 is for 1 to 2 weeks
-        //Priority 9 is for more than 2 weeks
-        if(!hasDate){
-            priority = 9;
+        if(hasDate){
+            LocalDate now = LocalDate.now();
+            int daysLeft = (int)ChronoUnit.DAYS.between(now, date); //This returns the days between as a long, so it is casted to an integer
+            return daysLeft;
         }
-        else{
-            int daysLeft = this.daysTillDue();
-            if(daysLeft <= 0)
-                priority = 0;
-            else if (daysLeft <= 7) 
-                priority = daysLeft;
-            else if (daysLeft <= 14)
-                priority = 8;
-            else 
-                priority = 9;
-        }
+        else
+            return 1000;
     }
 
-    public int getPriority(){
-        this.calculatePriority();
-        return priority;
-    }
-
+    /**
+     * Returns if the due date is passed or not
+     * 
+     * @return true if the due date has passed, false if it has not or there is no due date
+     */
     public boolean getLate(){  //No setter for 'late' as it is fully determined by the due date
         if(!hasDate)
             late = false;
@@ -74,6 +78,11 @@ public class DueDate {
         return late;
     }
 
+    /**
+     * Returns the due date
+     * 
+     * @return a LocalDate object for the due date
+     */
     public LocalDate getDate(){
         if(hasDate)
             return date;
@@ -81,26 +90,46 @@ public class DueDate {
             return LocalDate.of(1,1,1); //if there is not a date, something must be returned
     }
 
+    /**
+     * Sets the due date to a new date
+     * 
+     * @param d is the LocalDate for the new due date
+     */
     public void setDate(LocalDate d){
         date = d;
         if(!hasDate)
             hasDate = true;
     }
 
+    /**
+     * Extends the due date by a number of days
+     * 
+     * @param days is the number of days to expend the due date by
+     */
     public void extendDate(int days){
         if(hasDate)
             date = date.plusDays(days);
-        this.calculatePriority();
     }
 
+    /**
+     * Returns if there is a set due date
+     * 
+     * @return true if there is a due date, false if no due date
+     */
     public boolean getHasDate(){
         return hasDate;
     } 
     
-    public void removeDate(){ //Does not make sense to be able to make it true without actively adding a date
+    /**
+     * removes the due date
+     */
+    public void removeDate(){ //Does not make sense to be able to make hasDate true without actively adding a date
        hasDate = false;
     } 
 
+    /**
+     * toString class for the DueDate object
+     */
     public String toString(){
         if(!hasDate)
             return "This task has no due date";

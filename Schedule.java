@@ -3,16 +3,16 @@ import java.util.Comparator;
 
 public class Schedule {
    private ToDoList masterList;
-   /**
-     * promptName 
-     * prompts the user with the string "What is the filename?"
-     * Uses a Scanner (keyboard) object to read in the line input from the user
-     * @return the string input by the user
-     */
+   
     public Schedule() {
         masterList = new ToDoList();
     }
-
+    /**
+     * addToDoList 
+     * Adds a ToDoList into this Schedule object. 
+     * @param ToDoList t
+     * @return void
+     */
     public void addToDoList(ToDoList t){
         for (int x = 0; x<t.size(); x++){
             masterList.add(t.get(x));
@@ -21,6 +21,7 @@ public class Schedule {
     /**
      * isInSchedule
      * Takes in a task to see if it is in this active schedule.
+     * @param Task t
      * @return String
      */
     public String isInSchedule(Task t){
@@ -32,7 +33,11 @@ public class Schedule {
         }
     }
 
-    
+    /**
+     * toString
+     * Prints out the Schedule in chronological order by due date and provides past due Tasks.
+     * @return String
+     */
     public String toString(){
         String returnString = "";
         int rs = 0;

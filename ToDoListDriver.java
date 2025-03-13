@@ -64,7 +64,7 @@ public class ToDoListDriver
     
         for(int i=0;i<myList.size();i++){
             myList.get(i).isCompleate();
-            System.out.println("did you compleate this task?(Y/N): ");
+            System.out.println("did you complete this task?(Y/N): ");
             String y = keyboard.nextLine();
             if(y.equals("Y")){
                 myList.get(i).markComplete();
@@ -79,6 +79,7 @@ public class ToDoListDriver
         Schedule s = new Schedule();
 
         System.out.println("Here is your updated ToDo list");
+        keyboard.close();
 
         s.addToDoList(myList);
         System.out.println(s);

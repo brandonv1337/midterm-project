@@ -73,11 +73,27 @@ public class ToDoListDriver
                 keyboard.nextLine(); // keyboard bug fix 
                 System.out.println(myTask);
 
-                myTask.markComplete();
                 ToDoList myList = new ToDoList();
-                ToDoList newList = new ToDoList();
+
                 myList.add(myTask);
     
+            }
+
+        }
+        for(int i;i<myList.length();i++){
+            System.out.println("did you compleate this task?(Y/N): ");
+            String y = keyboard.nextLine();
+            if(y.equals("Y")){
+                myList[i].markComplete();
+                boolean h = myList[i].isRepeatable();
+                if(h=true){
+                    //call task repeat with the same name of task but with additional days added to due date
+                    // add this task to the task list
+                }
+            
+            }
+            else if (y.equals("N")){
+                
             }
         }
         Schedule s = new Schedule();

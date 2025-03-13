@@ -1,4 +1,4 @@
-import java.time.LocalDate;
+
 
 public class TaskRepeat {
     private boolean repeatable;
@@ -18,8 +18,20 @@ public class TaskRepeat {
         this.repeatable = repeatable;
     }
 
-    public void RepeatTask(){
-        //figure out how to return the same task with the new due date
+    public static void RepeatTask(Task k, ToDoList myList){
+        String name = k.getName();
+        String description = k.getdescription();
+        boolean repeatable = k.getRepeatable();
+        DueDate newTask =  k.getDate();
+        int days = k.getDays();
+        newTask.extendDate(days);
+        Task myTask = new Task(name, description, newTask, repeatable, days);
+
+        myList.addTask(myTask);
+        
+        
     }
     
 }
+
+    

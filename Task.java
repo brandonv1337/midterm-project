@@ -74,13 +74,17 @@ public class Task
     public void markComplete()
     {
         complete = true;
-        TaskRepeat.RepeatTask(this);
+        TaskRepeat.RepeatTask(this, toDoList);
 
     }
 
     public void markIncomplete()
     {
         complete = false;
+    }
+
+    public boolean isCompleate(){
+        return complete;
     }
 
     private void calculatePriority(){ //private because there is no point in calculating from outside of this class without getting it returned

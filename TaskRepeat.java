@@ -27,7 +27,7 @@ public class TaskRepeat {
         newTask.extendDate(days);
         Task myTask = new Task(name, description, newTask, repeatable, days);
 
-        myList.addTask(myTask);
+        myList.add(myTask);
         
         
     }

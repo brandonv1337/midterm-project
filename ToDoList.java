@@ -3,9 +3,8 @@ import java.util.ArrayList;
 /**
  * class that contains a todo list made up of task objects
  */
-public class ToDoList 
+public class ToDoList extends ArrayList<Task>
 {
-    private ArrayList<Task> tasks;
 
     /**
      * ToDoList
@@ -13,7 +12,7 @@ public class ToDoList
      */
     public ToDoList()
     {
-        tasks = new ArrayList<Task>();
+        
     }
 
     
@@ -25,7 +24,7 @@ public class ToDoList
     public String toString()
     {
         String rVal = "";
-        for( Task t : tasks)
+        for( Task t : this)
         {
             rVal += t;
             rVal += "\n";
@@ -33,34 +32,6 @@ public class ToDoList
         return rVal;
     }
 
-    /**
-     * getLength
-     * 
-     * @return
-     */
-    public int getLength(){
-        return tasks.size();
-    }
-
-    /**
-     * 
-     * @param i
-     * @return
-     */
-    public Task getTask(int i){
-        return tasks.get(i);
-    }
-
-    /**
-     * addTask
-     * adds a task to the todo list
-     * parameter is a task object
-     * @param newTask
-     */
-    public void addTask(Task newTask) 
-    {
-        tasks.add(newTask);
-    }
 
 
 }

@@ -55,19 +55,19 @@ public class ToDoListDriver
 
 
 
-                myList.addTask(myTask);
+                myList.add(myTask);
     
             }
 
         }
 
     
-        for(int i=0;i<myList.getLength();i++){
-            myList.getTask(i).isCompleate();
+        for(int i=0;i<myList.size();i++){
+            myList.get(i).isCompleate();
             System.out.println("did you compleate this task?(Y/N): ");
             String y = keyboard.nextLine();
             if(y.equals("Y")){
-                myList.getTask(i).markComplete(myList);
+                myList.get(i).markComplete();
                 
             
             }
@@ -80,8 +80,8 @@ public class ToDoListDriver
 
         System.out.println("Here is your updated ToDo list");
 
-        for(int y=0;y<myList.getLength();y++){
-            System.err.println(myList.getTask(y));
+        for(int y=0;y<myList.size();y++){
+            System.err.println(myList.get(y));
         }
 
 

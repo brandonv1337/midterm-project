@@ -3,24 +3,27 @@ public class Task
     private String name;
     private String description;
     private boolean complete;
+    private boolean repeatable;
     public DueDate dueDate; //public so that the date can be accessed from driver for specific tasks, class has own protections to keep variables safe: Added by Tim
     private int priority; //priority value will be between 0 (high) and 9 (low) or 10 (completed): Added by Tim
 
-    public Task(String n, String d) //Constructor for tasks without a due date
+    public Task(String n, String d, boolean r) //Constructor for tasks without a due date
     {
         name = n;
         description = d;
         complete = false;
         dueDate = new DueDate();
+        repeatable = r;
         calculatePriority();
     }
 
-    public Task(String n, String d, DueDate date)  //Constructor for tasks with a due date
+    public Task(String n, String d, DueDate date, boolean r)  //Constructor for tasks with a due date
     {
         name = n;
         description = d;
         complete = false;
         dueDate = date;
+        repeatable = r;
         calculatePriority();
     }
 

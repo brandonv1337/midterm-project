@@ -1,20 +1,25 @@
 import java.time.LocalDate;
-import java.util.Scanner;
 
 public class TaskRepeat {
     private boolean repeatable;
-    Scanner keyboard = new Scanner(System.in);
-    public TaskRepeat(){
-        System.out.println("Is this task repeatable?(Y/N)");
-        String R = keyboard.nextLine();
-        if (R.equals("Y")){
-            repeatable = True;
-            }
-        else if(R.equals("N")){
-            repeatable = False;
-        }
 
 
+    public TaskRepeat(boolean repeatable) {
+        this.repeatable = repeatable;
+    }
+    
+
+    public boolean isRepeatable() {
+        return repeatable;
+    }
+    
+        
+    public void setRepeatable(boolean repeatable) {
+        this.repeatable = repeatable;
+    }
+
+    public void RepeatTask(){
+        //figure out how to return the same task with the new due date
     }
     
 }

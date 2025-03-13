@@ -24,6 +24,8 @@ public class ToDoListDriver
             {
                 System.out.println("Please enter the task name: "); 
                 String name = keyboard.nextLine();
+                System.out.println("Please enter the description of the task: "); 
+                String description = keyboard.nextLine();
                 System.out.println("Please add the day of the due date");
                 int day = keyboard.nextInt();
                 System.out.println("Please enter the month of the due date(1-12): ");
@@ -39,11 +41,11 @@ public class ToDoListDriver
                     repeatable = new TaskRepeat(true);
                     System.out.println("how many days would you like to extend each time");
                     int days = keyboard.nextInt();
-                    myTask = new Task(name, "is due on", date, repeatable.isRepeatable(), days);
+                    myTask = new Task(name, description, date, repeatable.isRepeatable(), days);
                 }
                 else{
                     repeatable = new TaskRepeat(false);
-                    myTask = new Task(name, "is due on", date, repeatable.isRepeatable());
+                    myTask = new Task(name, description, date, repeatable.isRepeatable());
                 }
                 
                 
@@ -58,26 +60,39 @@ public class ToDoListDriver
             }
 
         }
+
+    
         for(int i=0;i<myList.getLength();i++){
+            myList.getTask(i).isCompleate();
             System.out.println("did you compleate this task?(Y/N): ");
             String y = keyboard.nextLine();
             if(y.equals("Y")){
-                myList.getTask(i).markComplete();
+                myList.getTask(i).markComplete(myList);
+                
             
             }
             else if (y.equals("N")){
                 
             }
         }
+    
         Schedule s = new Schedule();
 
+        System.out.println("Here is your updated ToDo list");
 
-        s.addToDoList(myList);
-        System.out.println(s.isInSchedule(myOtherTask));
-        System.out.println(s);
-        newList.add(myTask1);
-        s.addToDoList(newList);
-        System.out.println(s);
+        for(int y=0;y<myList.getLength();y++){
+            System.err.println(myList.getTask(y));
+        }
+
+
+
+
+        // s.addToDoList(myList);
+        // System.out.println(s.isInSchedule(myOtherTask));
+        // System.out.println(s);
+        // newList.add(myTask1);
+        // s.addToDoList(newList);
+        // System.out.println(s);
 
 
 

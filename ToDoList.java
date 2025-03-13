@@ -31,6 +31,23 @@ public class ToDoList
         return rVal;
     }
 
+    /**
+     * getLength
+     * 
+     * @return
+     */
+    public int getLength(){
+        return tasks.size();
+    }
+
+    /**
+     * 
+     * @param i
+     * @return
+     */
+    public Task getTask(int i){
+        return tasks.get(i);
+    }
 
     /**
      * addTask
@@ -45,4 +62,3 @@ public class ToDoList
 
 
 }
-

@@ -80,9 +80,12 @@ public class ToDoListDriver
 
         System.out.println("Here is your updated ToDo list");
 
-        for(int y=0;y<myList.size();y++){
-            System.err.println(myList.get(y));
-        }
+        s.addToDoList(myList);
+        System.out.println(s);
+
+        // for(int y=0;y<myList.size();y++){
+        //     System.err.println(myList.get(y));
+        // }
 
 
 

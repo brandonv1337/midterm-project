@@ -6,7 +6,10 @@ public class Task
     private boolean repeatable;
     public DueDate dueDate; //public so that the date can be accessed from driver for specific tasks, class has own protections to keep variables safe: Added by Tim
     private int priority; //priority value will be between 0 (high) and 9 (low) or 10 (completed): Added by Tim
+    private int days;
+    private ToDoList toDoList;
 
+    
     public Task(String n, String d, boolean r) //Constructor for tasks without a due date
     {
         name = n;
@@ -17,6 +20,16 @@ public class Task
         calculatePriority();
     }
 
+    public Task(String n, String d, DueDate date, boolean r, int da)  //Constructor for tasks with a due date
+    {
+        name = n;
+        description = d;
+        complete = false;
+        dueDate = date;
+        repeatable = r;
+        days = da;
+        calculatePriority();
+    }
     public Task(String n, String d, DueDate date, boolean r)  //Constructor for tasks with a due date
     {
         name = n;
@@ -33,14 +46,36 @@ public class Task
         return rVal;
     }
 
+    public int getDays()
+    {
+        return days;
+    }
+
+    public DueDate getDate()
+    {
+        return dueDate;
+    }
+
     public String getName()
     {
         return name;
     }
 
+    public boolean getRepeatable(){
+        return repeatable;
+    }
+
+
+    public String getdescription()
+    {
+        return description;
+    }
+
     public void markComplete()
     {
         complete = true;
+        TaskRepeat.RepeatTask(this);
+
     }
 
     public void markIncomplete()

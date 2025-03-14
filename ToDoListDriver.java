@@ -20,8 +20,11 @@ public class ToDoListDriver
             if(item.equals("N")){
                 finished = true;
             }
-            else if(item.equals("Y"))
-            {
+            else; 
+            System.out.println("Would you like this task to nest another task?(Y/N):");
+            String Nested = keyboard.nextLine();
+            if(Nested.equals("N")){
+
                 System.out.println("Please enter the task name: "); 
                 String name = keyboard.nextLine();
                 System.out.println("Please enter the description of the task: "); 
@@ -34,6 +37,7 @@ public class ToDoListDriver
                 int year = keyboard.nextInt();
                 System.out.println("Would you like this task to be repatable(Y/N): ");
                 String r = keyboard.nextLine();
+                                
                 TaskRepeat repeatable;
                 DueDate date = new DueDate(month,day,year);
                 Task myTask;
@@ -56,6 +60,75 @@ public class ToDoListDriver
 
 
                 myList.add(myTask);
+            }
+            else if(item.equals("Y")){
+                System.out.println( "Lets make your dependant task! This will be the task that shows once another taks is completed.");
+
+                System.out.println("Please enter the new task name: "); 
+                String name = keyboard.nextLine();
+                System.out.println("Please enter the description of the new task: "); 
+                String description = keyboard.nextLine();
+                System.out.println("Please add the day of the due date");
+                int day = keyboard.nextInt();
+                System.out.println("Please enter the month of the due date(1-12): ");
+                int month = keyboard.nextInt();
+                System.out.println("Please enter the year of the due date: ");
+                int year = keyboard.nextInt();
+                System.out.println("Would you like this task to be repatable(Y/N): ");
+                String r = keyboard.nextLine();
+
+                                
+                TaskRepeat repeatable;
+                DueDate date = new DueDate(month,day,year);
+                Task myTask;
+                if(r.equals("Y")){
+                    repeatable = new TaskRepeat(true);
+                    System.out.println("how many days would you like to extend each time");
+                    int days = keyboard.nextInt();
+                    myTask = new Task(name, description, date, repeatable.isRepeatable(), days);
+                }
+                else{
+                    repeatable = new TaskRepeat(false);
+                    myTask = new Task(name, description, date, repeatable.isRepeatable());
+                }
+                
+                System.out.println( "Lets make your independant task!");
+                
+                System.out.println("Please enter the new task name: "); 
+                String name2 = keyboard.nextLine();
+                System.out.println("Please enter the description of the new task: "); 
+                String description2 = keyboard.nextLine();
+                System.out.println("Please add the day of the due date");
+                int day2 = keyboard.nextInt();
+                System.out.println("Please enter the month of the due date(1-12): ");
+                int month2 = keyboard.nextInt();
+                System.out.println("Please enter the year of the due date: ");
+                int year2 = keyboard.nextInt();
+                System.out.println("Would you like this task to be repatable(Y/N): ");
+                String r2 = keyboard.nextLine();
+                                
+                TaskRepeat repeatable2;
+                DueDate date2 = new DueDate(month2,day2,year2);
+                Task myTask2;
+                if(r2.equals("Y")){
+                    repeatable2 = new TaskRepeat(true);
+                    System.out.println("how many days would you like to extend each time");
+                    int days = keyboard.nextInt();
+                    myTask2 = new NestedTask(name2, description2, date2, repeatable2.isRepeatable(), days, myTask);
+                }
+                else{
+                    repeatable2 = new TaskRepeat(false);
+                    myTask2 = new NestedTask(name2, description2, date2, repeatable2.isRepeatable(), myTask);
+                }
+                
+                
+
+                keyboard.nextLine(); // keyboard bug fix 
+                System.out.println(myTask2);
+
+
+
+                myList.add(myTask2);
     
             }
 
@@ -67,13 +140,20 @@ public class ToDoListDriver
             System.out.println("did you compleate this task?(Y/N): ");
             String y = keyboard.nextLine();
             if(y.equals("Y")){
-                myList.get(i).markComplete();
-                
+                if(myList.get(i).isNested() == true){ 
+                    NestedTask Mytask = (NestedTask) myList.get(i);
+                    Task Mytask2 = Mytask.getNested();
+                    myList.get(i).markComplete();
+                    myList.add(Mytask2);
+                }
+                else{
+                myList.get(i).markComplete();                   
+                }
+
+            }
             
-            }
-            else if (y.equals("N")){
-                
-            }
+
+        }
         }
     
         Schedule s = new Schedule();
@@ -98,4 +178,4 @@ public class ToDoListDriver
 
 
     }
-}
+

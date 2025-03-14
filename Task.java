@@ -86,6 +86,9 @@ public class Task
     public boolean isCompleate(){
         return complete;
     }
+    public Boolean isNested(){
+        return false;
+    }
 
     private void calculatePriority(){ //private because there is no point in calculating from outside of this class without getting it returned
         //Added by Tim

@@ -20,7 +20,7 @@ public class ToDoListDriver
             if(item.equals("N")){
                 finished = true;
             }
-            else; 
+            else{
             System.out.println("Would you like this task to nest another task?(Y/N):");
             String Nested = keyboard.nextLine();
             if(Nested.equals("N")){
@@ -31,10 +31,13 @@ public class ToDoListDriver
                 String description = keyboard.nextLine();
                 System.out.println("Please add the day of the due date");
                 int day = keyboard.nextInt();
+                keyboard.nextLine(); // Consume newline left-over
                 System.out.println("Please enter the month of the due date(1-12): ");
                 int month = keyboard.nextInt();
+                keyboard.nextLine(); // Consume newline left-over
                 System.out.println("Please enter the year of the due date: ");
                 int year = keyboard.nextInt();
+                keyboard.nextLine(); // Consume newline left-over
                 System.out.println("Would you like this task to be repatable(Y/N): ");
                 String r = keyboard.nextLine();
                                 
@@ -61,7 +64,7 @@ public class ToDoListDriver
 
                 myList.add(myTask);
             }
-            else if(item.equals("Y")){
+            else if(Nested.equals("Y")){
                 System.out.println( "Lets make your dependant task! This will be the task that shows once another taks is completed.");
 
                 System.out.println("Please enter the new task name: "); 
@@ -70,10 +73,13 @@ public class ToDoListDriver
                 String description = keyboard.nextLine();
                 System.out.println("Please add the day of the due date");
                 int day = keyboard.nextInt();
+                keyboard.nextLine(); // Consume newline left-over
                 System.out.println("Please enter the month of the due date(1-12): ");
                 int month = keyboard.nextInt();
+                keyboard.nextLine(); // Consume newline left-over
                 System.out.println("Please enter the year of the due date: ");
                 int year = keyboard.nextInt();
+                keyboard.nextLine(); // Consume newline left-over
                 System.out.println("Would you like this task to be repatable(Y/N): ");
                 String r = keyboard.nextLine();
 
@@ -85,6 +91,7 @@ public class ToDoListDriver
                     repeatable = new TaskRepeat(true);
                     System.out.println("how many days would you like to extend each time");
                     int days = keyboard.nextInt();
+                    keyboard.nextLine(); // Consume newline left-over
                     myTask = new Task(name, description, date, repeatable.isRepeatable(), days);
                 }
                 else{
@@ -100,12 +107,15 @@ public class ToDoListDriver
                 String description2 = keyboard.nextLine();
                 System.out.println("Please add the day of the due date");
                 int day2 = keyboard.nextInt();
+                keyboard.nextLine(); // Consume newline left-over
                 System.out.println("Please enter the month of the due date(1-12): ");
                 int month2 = keyboard.nextInt();
+                keyboard.nextLine(); // Consume newline left-over
                 System.out.println("Please enter the year of the due date: ");
                 int year2 = keyboard.nextInt();
                 System.out.println("Would you like this task to be repatable(Y/N): ");
                 String r2 = keyboard.nextLine();
+                keyboard.nextLine(); // Consume newline left-over
                                 
                 TaskRepeat repeatable2;
                 DueDate date2 = new DueDate(month2,day2,year2);
@@ -131,6 +141,7 @@ public class ToDoListDriver
                 myList.add(myTask2);
     
             }
+        }
 
         }
 
@@ -140,7 +151,8 @@ public class ToDoListDriver
             System.out.println("did you complete this task?(Y/N): ");
             String y = keyboard.nextLine();
             if(y.equals("Y")){
-                if(myList.get(i).isNested() == true){ 
+                if(myList.get(i).isNested()
+                ){ 
                     NestedTask Mytask = (NestedTask) myList.get(i);
                     Task Mytask2 = Mytask.getNested();
                     myList.get(i).markComplete();
@@ -154,7 +166,8 @@ public class ToDoListDriver
             
 
         }
-        }
+        
+    
     
         Schedule s = new Schedule();
 
@@ -177,9 +190,10 @@ public class ToDoListDriver
         // newList.add(myTask1);
         // s.addToDoList(newList);
         // System.out.println(s);
-
-
-
-
     }
+
+
+
+
+}
 

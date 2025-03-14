@@ -59,8 +59,8 @@ public class ToDoListDriver
                 
                 
 
-                keyboard.nextLine(); // keyboard bug fix 
-                System.out.println(myTask);
+                 
+                
 
 
 
@@ -136,8 +136,6 @@ public class ToDoListDriver
                 
                 
 
-                keyboard.nextLine(); // keyboard bug fix 
-                System.out.println(myTask2);
 
 
 

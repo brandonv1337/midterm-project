@@ -21,13 +21,6 @@ public class NestedTask extends Task{
     private Task dependant;
 
     /** NestedTask1
-     * constructs a nested task without a due date
-     */
-    public NestedTask(String n, String d , boolean r ,Task dependant) {
-        super(n,d,r);
-        this.dependant = dependant;
-    }
-    /** NestedTask2
      * constructs a nested task with a due date
      * @param date due as DueDate
     */
@@ -35,7 +28,7 @@ public class NestedTask extends Task{
         super(n,d,date,r,da);
         this.dependant = dependant;
     }
-    /** NestedTask3 
+    /** NestedTask2 
      * constructs a nested task with a due date
      * @param date due as DueDate
     */

@@ -1,5 +1,7 @@
 import java.util.Scanner;
-
+/**
+ * Class that drives the code asking for user input
+ */
 public class ToDoListDriver 
 {
     public static void main(String[] args) 
@@ -7,13 +9,13 @@ public class ToDoListDriver
 
 
 
-        ToDoList myList = new ToDoList();
+        ToDoList myList = new ToDoList(); //uses ToDoList class to make a new empty list
 
 
 
         Scanner keyboard = new Scanner(System.in);
         boolean finished = false;
-
+        //while statment that initailizes values for each task and fills the to do list with as many tasks as the user wants.
         while (finished == false) {
             System.out.println("Would you like to enter another Task?(Y/N): "); 
             String item = keyboard.nextLine(); // reads statment to see if it should ask for another entry
@@ -21,7 +23,7 @@ public class ToDoListDriver
                 finished = true;
             }
             else{
-            System.out.println("Would you like this task to nest another task?(Y/N):");
+            System.out.println("Would you like this task to nest another task?(Y/N):"); // figures out if this new task should be a nested one or not 
             String Nested = keyboard.nextLine();
             if(Nested.equals("N")){
 
@@ -41,18 +43,18 @@ public class ToDoListDriver
                 System.out.println("Would you like this task to be repatable(Y/N): ");
                 String r = keyboard.nextLine();
                                 
-                TaskRepeat repeatable;
-                DueDate date = new DueDate(month,day,year);
+                TaskRepeat repeatable; //initializes repeatable vale
+                DueDate date = new DueDate(month,day,year); // creates the duedate for the task
                 Task myTask;
                 if(r.equals("Y")){
                     repeatable = new TaskRepeat(true);
-                    System.out.println("how many days would you like to extend each time");
+                    System.out.println("how many days would you like the due date to extend by each time the task is repeated? :");
                     int days = keyboard.nextInt();
-                    myTask = new Task(name, description, date, repeatable.isRepeatable(), days);
+                    myTask = new Task(name, description, date, repeatable.isRepeatable(), days); //has parapeter days for if the task is being repated
                 }
                 else{
                     repeatable = new TaskRepeat(false);
-                    myTask = new Task(name, description, date, repeatable.isRepeatable());
+                    myTask = new Task(name, description, date, repeatable.isRepeatable());//no days peramater and repatable is set to false 
                 }
                 
                 
@@ -64,7 +66,8 @@ public class ToDoListDriver
 
                 myList.add(myTask);
             }
-            else if(Nested.equals("Y")){
+            //does the same thing as above but for a nested task
+            else if(Nested.equals("Y")){ 
                 System.out.println( "Lets make your dependant task! This will be the task that shows once another taks is completed.");
 
                 System.out.println("Please enter the new task name: "); 
@@ -119,16 +122,16 @@ public class ToDoListDriver
                                 
                 TaskRepeat repeatable2;
                 DueDate date2 = new DueDate(month2,day2,year2);
-                Task myTask2;
+                Task myTask2; 
                 if(r2.equals("Y")){
                     repeatable2 = new TaskRepeat(true);
                     System.out.println("how many days would you like to extend each time");
                     int days = keyboard.nextInt();
-                    myTask2 = new NestedTask(name2, description2, date2, repeatable2.isRepeatable(), days, myTask);
+                    myTask2 = new NestedTask(name2, description2, date2, repeatable2.isRepeatable(), days, myTask); //creates independent task for nested task
                 }
                 else{
                     repeatable2 = new TaskRepeat(false);
-                    myTask2 = new NestedTask(name2, description2, date2, repeatable2.isRepeatable(), myTask);
+                    myTask2 = new NestedTask(name2, description2, date2, repeatable2.isRepeatable(), myTask);  //creates independent task for nested task
                 }
                 
                 
@@ -138,14 +141,15 @@ public class ToDoListDriver
 
 
 
-                myList.add(myTask2);
+                myList.add(myTask2); 
     
             }
         }
 
         }
 
-    
+        // Loops through the entirty of the list asking if it is compeated or not.
+        //if the task is compleated and is repeatable it gets sent over to the task repeat class
         for(int i=0;i<myList.size();i++){
             myList.get(i).isCompleate();
             System.out.println("did you complete this task?(Y/N): ");
@@ -155,11 +159,11 @@ public class ToDoListDriver
                 ){ 
                     NestedTask Mytask = (NestedTask) myList.get(i);
                     Task Mytask2 = Mytask.getNested();
-                    myList.get(i).markComplete();
+                    myList.get(i).markComplete(); // gets sent to mark compleate method in Task.java
                     myList.add(Mytask2);
                 }
                 else{
-                myList.get(i).markComplete();                   
+                myList.get(i).markComplete();  // gets sent to mark compleate method in Task.java           
                 }
 
             }
@@ -169,31 +173,17 @@ public class ToDoListDriver
         
     
     
-        Schedule s = new Schedule();
+        Schedule s = new Schedule(); 
 
-        System.out.println("Here is your updated ToDo list");
+        System.out.println("Here is your updated ToDo list"); 
         keyboard.close();
 
         s.addToDoList(myList);
-        System.out.println(s);
+        System.out.println(s); //prints out final schedule with all tasks updated. 
 
-        // for(int y=0;y<myList.size();y++){
-        //     System.err.println(myList.get(y));
-        // }
-
-
-
-
-        // s.addToDoList(myList);
-        // System.out.println(s.isInSchedule(myOtherTask));
-        // System.out.println(s);
-        // newList.add(myTask1);
-        // s.addToDoList(newList);
-        // System.out.println(s);
     }
 
 
 
 
 }
-

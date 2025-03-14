@@ -137,7 +137,7 @@ public class ToDoListDriver
     
         for(int i=0;i<myList.size();i++){
             myList.get(i).isCompleate();
-            System.out.println("did you compleate this task?(Y/N): ");
+            System.out.println("did you complete this task?(Y/N): ");
             String y = keyboard.nextLine();
             if(y.equals("Y")){
                 if(myList.get(i).isNested() == true){ 
@@ -159,10 +159,14 @@ public class ToDoListDriver
         Schedule s = new Schedule();
 
         System.out.println("Here is your updated ToDo list");
+        keyboard.close();
 
-        for(int y=0;y<myList.size();y++){
-            System.err.println(myList.get(y));
-        }
+        s.addToDoList(myList);
+        System.out.println(s);
+
+        // for(int y=0;y<myList.size();y++){
+        //     System.err.println(myList.get(y));
+        // }
 
 
 
